@@ -18,6 +18,7 @@ public class User {
 
     private String username;
 
+    private String fname;
     private String lname;
 
     private String email;
@@ -43,6 +44,14 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
     public void setUsername(String username) {
