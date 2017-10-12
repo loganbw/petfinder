@@ -46,7 +46,7 @@ public class UserController {
         user.setActive(true);
         user.setRegion(region);
         userDao.save(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 }
