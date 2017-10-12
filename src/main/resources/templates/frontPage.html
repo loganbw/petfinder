@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1>Pet-Net</h1>
+    <h3>Locate your pet without the hassel of a chip!</h3>
+    <p>
+        asdfbtewsgfdyj5yetwfsdbfgnhergsdbfhegsdbftrhegsdbfnhergwd
+        gesdnthregsdfbnjthergsdbfngjthergbdfnhregsbdfnjrthegbdfnghterg
+        rgdsvbfgnhergbdfsgntrhegbdfnjhtergwbsfdnrthe5rgbdfngrthebdf
+    </p>
+    <form action="/login">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="submit" value="login" />
+    </form>
+    <form action="/signup">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="submit" value="signup" />
+    </form>
+</div>
+</body>
+</html>
