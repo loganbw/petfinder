@@ -52,9 +52,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").hasRole("USER")
-                .antMatchers("/signup").permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/home").hasRole("USER")
+                .antMatchers("/signup", "login", "/").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -67,7 +66,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     }
 
     private AuthenticationSuccessHandler successHandler(){
-        return (request, response, authentication) -> response.sendRedirect("/");
+        return (request, response, authentication) -> response.sendRedirect("/home");
     }
     private AuthenticationFailureHandler failureHandler() {
         return (request, response, exception) -> {

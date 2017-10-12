@@ -18,13 +18,13 @@
     <div>
         <form action="/login" method="post" th:object="${user}">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <label th:for="*{email}">email</label>
-            <input type="text" th:field="*{email}" />
+            <label th:for="*{username}">username</label>
+            <input type="text" th:field="*{username}" />
             <br/>
             <label th:for="*{password}">Password</label>
             <input type="password" th:field="*{password}" />
             <br/>
-            <input type="submit" name="login" value="login"/>
+            <input type="submit" value="login"/>
         </form>
     </div>
     <div>
