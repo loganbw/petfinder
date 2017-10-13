@@ -25,7 +25,7 @@ public class User {
 
     private String password;
 
-
+    private String friends;
     private boolean active;
 
     private String region;
@@ -48,6 +48,14 @@ public class User {
 
     public String getFname() {
         return fname;
+    }
+
+    public String getFriends() {
+        return friends;
+    }
+
+    public void setFriends(String friends) {
+        this.friends = friends;
     }
 
     public void setFname(String fname) {
