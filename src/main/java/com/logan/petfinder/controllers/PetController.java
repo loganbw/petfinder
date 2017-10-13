@@ -25,15 +25,16 @@ public class PetController {
     public String home( Principal principal,
                         Model model){
         User me = userDao.findByUsername(principal.getName());
+        model.addAttribute("userPet", petDao.findAllByUser(me));
         model.addAttribute("pet", new Pet());
         model.addAttribute("user", me);
         return "pets";
     }
     @RequestMapping(value = "/pets", method = RequestMethod.POST)
     public String add(@ModelAttribute Pet newPet,
-                      @RequestParam("petOwner") User user){
-        Pet pet = new Pet();
-        pet.setUser(user);
+                      @RequestParam("petOwner") long id){
+
+        newPet.setUser(userDao.findOne(id));
         petDao.save(newPet);
         return "redirect:/pets";
     }

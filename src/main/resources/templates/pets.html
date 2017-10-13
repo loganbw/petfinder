@@ -19,13 +19,18 @@
     </div>
     <div class="pets">
         <h3>Your Pets :</h3>
-
+        <div class="userpets" th:each="userPet : ${userPet}">
+            <span th:text="${userPet.name}"></span>
+            <br/>
+            <span th:text="${userPet.breed}"></span>
+            <hr/>
+        </div>
     </div>
     <div class="addpet">
         <h3>add your pet :</h3>
         <form action="/pets" th:object="${pet}" method="post">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <input type="hidden"  th:value="${user.petOwner}" />
+            <input type="hidden" name="petOwner"  th:value="${user.id}" />
             <input type="text" th:field="*{name}" placeholder="name" />
             <br/>
             <input type="text" th:field="*{color}" placeholder="color" />
