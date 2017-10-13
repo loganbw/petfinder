@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <span><a href="/home">Home</a></span>
+        <span><a th:href="'/pets/'+ ${user.id}">Pets</a></span>
+        <span><a href="/net">Your NetWork</a></span>
+        <span><a href="/find">Users in your area</a></span>
+        <span><a href="/user"  th:text="${user.username}"></a></span>
+        <form action="/logout" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input type="submit" value="logout"/>
+        </form>
+    </div>
+    <div class="petName">
+        <h2 th:text="${userPet.name}"></h2>
+    </div>
+    <div class="update">
+        <form th:action="@{'/pet/details/update/' + ${userPet.id}}" th:object="${userPet}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <br/>
+            <input type="text" th:field="*{age}" />
+            <input type="hidden" th:field="*{name}"/>
+            <input type="hidden" th:field="*{breed}"/>
+            <input type="hidden" th:field="*{gender}"/>
+            <br/>
+            <input type="text" th:field="*{color}" />
+            <br/>
+            <textarea name="description" id="" cols="30" rows="10" th:field="*{description}"></textarea>
+            <br/>
+            <input type="submit" value="update" />
+        </form>
+    </div>
+    <div class="helpfulTip">
+        <span> dont forget to update your pet every six months</span>
+    </div>
+<div>
+    <a th:href="'/pets/'+ ${user.id}">head back</a>
+</div>
+</div>
+</body>
+</html>

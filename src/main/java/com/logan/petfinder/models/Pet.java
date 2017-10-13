@@ -15,6 +15,7 @@ public class Pet {
     private String breed;
     private int age;
     private String description;
+    private String gender;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -75,6 +76,14 @@ public class Pet {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
 

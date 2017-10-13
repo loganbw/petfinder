@@ -8,7 +8,7 @@
 <div class="container">
     <div class="nav">
         <span><a href="/home">Home</a></span>
-        <span><a href="/pets">Pets</a></span>
+        <span><a th:href="'/pets/'+ ${user.id}">Pets</a></span>
         <span><a href="/net">Your NetWork</a></span>
         <span><a href="/find">Users in your area</a></span>
         <span><a href="/user"  th:text="${user.username}"></a></span>

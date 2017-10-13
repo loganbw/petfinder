@@ -7,10 +7,7 @@ import com.logan.petfinder.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -21,8 +18,9 @@ public class PetController {
     @Autowired
     PetDao petDao;
 
-    @RequestMapping(value = "/pets" )
+    @RequestMapping(value = "/pets/{userId}" )
     public String home( Principal principal,
+                        @PathVariable("userId") long userId,
                         Model model){
         User me = userDao.findByUsername(principal.getName());
         model.addAttribute("userPet", petDao.findAllByUser(me));
@@ -30,12 +28,34 @@ public class PetController {
         model.addAttribute("user", me);
         return "pets";
     }
-    @RequestMapping(value = "/pets", method = RequestMethod.POST)
+    @RequestMapping(value = "/pets/{userId}", method = RequestMethod.POST)
     public String add(@ModelAttribute Pet newPet,
+                      Principal principal,
+                      @PathVariable("userId") long userId,
                       @RequestParam("petOwner") long id){
-
+        User me = userDao.findByUsername(principal.getName());
         newPet.setUser(userDao.findOne(id));
         petDao.save(newPet);
-        return "redirect:/pets";
+        return "redirect:/pets/" + me.getId();
+    }
+    @RequestMapping(value = "/pet/details/{userId}/{petId}")
+    public String review(Model model,
+                         Principal principal,
+                         @PathVariable("userId") long userId,
+                         @PathVariable("petId") long petId){
+        User me = userDao.findByUsername(principal.getName());
+        Pet findPet = petDao.findOne(petId);
+        model.addAttribute("user", me);
+        model.addAttribute("userPet", petDao.findOne(petId));
+        model.addAttribute("pet", findPet);
+        return "petDetails";
+    }
+    @RequestMapping(value = "/pet/details/update/{id}", method = RequestMethod.POST)
+    public String update(@ModelAttribute Pet updatePet,
+                         Principal principal) {
+        User me = userDao.findByUsername(principal.getName());
+        updatePet.setUser(userDao.findOne(me.getId()));
+        petDao.save(updatePet);
+        return "redirect:/pets/"+ me.getId();
     }
 }
