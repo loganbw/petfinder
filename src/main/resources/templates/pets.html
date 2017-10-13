@@ -23,9 +23,9 @@
     </div>
     <div class="addpet">
         <h3>add your pet :</h3>
-        <form action="/pets" th:object="${pet}">
+        <form action="/pets" th:object="${pet}" method="post">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <input type="hidden" th:field="${user.id}" />
+            <input type="hidden"  th:value="${user.petOwner}" />
             <input type="text" th:field="*{name}" placeholder="name" />
             <br/>
             <input type="text" th:field="*{color}" placeholder="color" />

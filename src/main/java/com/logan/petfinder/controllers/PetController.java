@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
@@ -29,7 +30,10 @@ public class PetController {
         return "pets";
     }
     @RequestMapping(value = "/pets", method = RequestMethod.POST)
-    public String add(@ModelAttribute Pet newPet){
+    public String add(@ModelAttribute Pet newPet,
+                      @RequestParam("petOwner") User user){
+        Pet pet = new Pet();
+        pet.setUser(user);
         petDao.save(newPet);
         return "redirect:/pets";
     }
