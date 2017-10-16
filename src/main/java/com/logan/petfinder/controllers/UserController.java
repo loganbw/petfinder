@@ -32,9 +32,7 @@ public class UserController {
     public String signupForm(Model model,
                              @RequestParam("email") String email,
                              @RequestParam("password") String password,
-                             @RequestParam("username") String username,
-                             @RequestParam("lname") String lname,
-                             @RequestParam("region") String region){
+                             @RequestParam("username") String username){
         User user = new User();
         Role userRole = roleDao.findByName("ROLE_USER");
         String encryptedPassword = bCryptPasswordEncoder.encode(password);
@@ -42,9 +40,8 @@ public class UserController {
         user.setEmail(email);
         user.setRole(userRole);
         user.setUsername(username);
-        user.setlName(lname);
         user.setActive(true);
-        user.setRegion(region);
+
         userDao.save(user);
         return "redirect:/login";
     }

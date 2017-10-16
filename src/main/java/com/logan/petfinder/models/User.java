@@ -22,10 +22,13 @@ public class User {
     private String lname;
 
     private String email;
+    private int phone;
 
     private String password;
 
-    private String friends;
+    @OneToMany(mappedBy = "user")
+    private List<Friend> friends;
+
     private boolean active;
 
     private String region;
@@ -33,6 +36,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+
 
     public long getId() {
         return id;
@@ -50,13 +56,23 @@ public class User {
         return fname;
     }
 
-    public String getFriends() {
+    public List<Friend> getFriends() {
         return friends;
     }
 
-    public void setFriends(String friends) {
+    public void setFriends(List<Friend> friends) {
         this.friends = friends;
     }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+
 
     public void setFname(String fname) {
         this.fname = fname;
@@ -66,12 +82,12 @@ public class User {
         this.username = username;
     }
 
-    public String getlName() {
+    public String getLname() {
         return lname;
     }
 
-    public void setlName(String lName) {
-        this.lname = lName;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
     public String getEmail() {
