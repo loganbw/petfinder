@@ -21,8 +21,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Controller
 public class HomeController {
-    public static final String ACCOUNT_SID = "ACd246cda9a3dbb08a05956c6f37db14db";
-    public static final String AUTH_TOKEN = "12a6a66423fe3d65c2fc5c5d86bd6e34";
+    public static final String ACCOUNT_SID = System.getenv("TWILIO_SID");
+    public static final String AUTH_TOKEN = System.getenv("TWILIO_TOKEN");
     public static final String TWILIO_NUMBER = "+18643831532";
 
     @Autowired
@@ -46,14 +46,15 @@ public class HomeController {
         sendFound();
         return "redirect:/home";
     }
-            public void sendSMS() {
+
+    public void sendSMS() {
         try {
             TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
 
             // messages
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("Body", "Your pet is lost!"));
-            params.add(new BasicNameValuePair("To", "18646219361")); //Add real number here
+            params.add(new BasicNameValuePair("To", "+15156642017")); //Add real number here
             params.add(new BasicNameValuePair("From", TWILIO_NUMBER));
 
             MessageFactory messageFactory = client.getAccount().getMessageFactory();
@@ -71,7 +72,7 @@ public class HomeController {
             // messages
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("Body", "Your pet is found!"));
-            params.add(new BasicNameValuePair("To", "18646219361")); //Add real number here
+            params.add(new BasicNameValuePair("To", "15156642017")); //Add real number here
             params.add(new BasicNameValuePair("From", TWILIO_NUMBER));
 
             MessageFactory messageFactory = client.get().getAccount().getMessageFactory();
