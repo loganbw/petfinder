@@ -25,6 +25,11 @@
             <br/>
             <span th:text="${userPet.breed}"></span>
             </a>
+            <form th:action="'/pets/delete/'+ ${user.id} " method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="hidden" name="petId" th:value="${userPet.id}" />
+                <input type="submit" value="delete" />
+            </form>
             <hr/>
         </div>
     </div>

@@ -1,5 +1,4 @@
 package com.logan.petfinder.controllers;
-
 import com.logan.petfinder.Dao.PetDao;
 import com.logan.petfinder.Dao.UserDao;
 import com.logan.petfinder.models.Pet;
@@ -36,6 +35,18 @@ public class PetController {
         User me = userDao.findByUsername(principal.getName());
         newPet.setUser(userDao.findOne(id));
         petDao.save(newPet);
+        return "redirect:/pets/" + me.getId();
+    }
+    @RequestMapping(value = "/pets/delete/{userId}", method = RequestMethod.POST)
+    public String delete(
+                         @PathVariable("userId") Long id,
+                         @RequestParam("petId") Integer petId,
+                         Principal principal,
+                      Model model){
+        User me = userDao.findByUsername(principal.getName());
+        Pet pet = petDao.findById(petId);
+        petDao.delete(pet);
+        System.out.println(id);
         return "redirect:/pets/" + me.getId();
     }
     @RequestMapping(value = "/pet/details/{userId}/{petId}")

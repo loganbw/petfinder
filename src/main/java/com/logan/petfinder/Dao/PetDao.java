@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PetDao extends CrudRepository<Pet, Long> {
     List<Pet> findAllByUser(User user);
+    Pet findById(long id);
 }

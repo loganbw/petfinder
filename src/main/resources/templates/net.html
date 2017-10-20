@@ -25,12 +25,12 @@
     </form>
     <div>
         <ul th:each="friend : ${confirmed}">
-            <li><a th:href="'/net/' + ${friend.id}" th:text="${friend.username}"></a></li>
+            <li><a th:href="'/user/' + ${friend.id}" th:text="${friend.username}"></a></li>
         </ul>
     </div>
     <h1>Requests</h1>
     <ul th:each="pendingFriend : ${pending}">
-        <li><a th:href="'/net/' + ${pendingFriend.id}" th:text="${pendingFriend.username}"></a></li>
+        <li><a th:href="'/user/' + ${pendingFriend.id}" th:text="${pendingFriend.username}"></a></li>
         <form action="/net/accept" method="post">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <input type="hidden" name="friendId" th:value="${pendingFriend.id}" />

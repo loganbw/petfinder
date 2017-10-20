@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Title</title>
 </head>
+
 <body>
 <div class="container">
     <div class="nav">
@@ -17,14 +18,20 @@
             <input type="submit" value="logout"/>
         </form>
     </div>
-    <h1 th:text="${otherUser.username}"></h1>
-    <span th:text="'Name: ' + ${otherUser.fname} + ' '"></span>
-
-    <span th:text="${otherUser.lname}"></span>
-    <br/>
-    <p th:text="'Email: ' + ${otherUser.email}"></p>
-    <p th:text="'Phone: ' + ${otherUser.phone}"></p>
-
+    <h1>Friends in your zip code!</h1>
+    <h3 th:text="${noFriendsFound}"></h3>
+    <div th:each="friendUser : ${friendUsers}">
+        <span th:text="${friendUser.username}"></span>
+    </div>
+    <h1>Other users in your zip code!</h1>
+    <div th:each="localUser : ${localUsers}">
+        <span th:text="${localUser.username}"></span>
+        <form action="/find/addFriend" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input name="newFriendName" type="hidden" th:value="${localUser.username}" />
+            <input type="submit" value="Add to Network" />
+        </form>
+    </div>
 </div>
 </body>
 </html>

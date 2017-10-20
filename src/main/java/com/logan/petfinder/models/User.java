@@ -37,7 +37,10 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToOne
+    @JoinColumn(name = "zip_id")
+    private Zip zip;
+
 
 
     public long getId() {
@@ -136,6 +139,13 @@ public class User {
         return myAuthorities;
     }
 
+    public Zip getZip() {
+        return zip;
+    }
+
+    public void setZip(Zip zip) {
+        this.zip = zip;
+    }
 
     public boolean isAccountNonExpired() {
         return true;
