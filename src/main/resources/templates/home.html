@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link rel="stylesheet" href="/assets/css/homes.css" type="text/css"/>
 </head>
 <body>
 <div class="container">
@@ -18,9 +19,17 @@
         </form>
     </div>
 <div class="lost">
-    <a href="/lost">lost</a>
+    <form action="/lost" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="hidden" name="userphone" th:value="${user.phone}" />
+        <input type="submit" value="lost" />
+    </form>
     <br/>
-    <a href="/found">found</a>
+    <!--<form action="/found" method="post">-->
+        <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+        <!--<input type="hidden" name="userphone" th:value="${user.phone}" />-->
+        <!--<input type="submit" value="found" />-->
+    <!--</form>-->
 </div>
 
 

@@ -49,6 +49,9 @@ public class FindUsersController {
                 for (Friend friend: myFriends) {
                     if (user.getUsername().equals(friend.getFriendname())){
                         friendUsers.add(user);
+                        break;
+                    } else if (friendUsers.contains(userDao.findByUsername(friend.getFriendname()))){
+                        continue;
                     } else {
                         localUsers.add(user);
                     }

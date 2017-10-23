@@ -64,7 +64,6 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .logoutSuccessUrl("/login");
     }
-
     private AuthenticationSuccessHandler successHandler(){
         return (request, response, authentication) -> response.sendRedirect("/home");
     }

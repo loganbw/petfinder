@@ -44,7 +44,7 @@ public class UserProfileController {
     public String home(@PathVariable("userId") long userId,
                        @RequestParam("firstName") String firstName,
                        @RequestParam("lastName") String lastName,
-                       @RequestParam("phoneNum") Integer phoneNum,
+                       @RequestParam("phoneNum") String phoneNum,
                        @RequestParam("emailAddress") String emailAddress,
                        @RequestParam("zip") String strZip,
                        Principal principal,

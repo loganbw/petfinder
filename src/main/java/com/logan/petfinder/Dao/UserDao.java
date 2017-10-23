@@ -13,5 +13,6 @@ public interface UserDao extends CrudRepository<User,Long> {
     User findById(long id);
     List<User> findByZip(Zip zip);
     List<User> findByZipAndUsernameIsNot(Zip zip, String username);
+    List<User> findByPhone(String phone);
 
 }
