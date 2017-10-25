@@ -23,12 +23,12 @@ public class UserController {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @RequestMapping(name = "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signupForm(Model model){
         model.addAttribute("user", new User());
         return "signup";
     }
-    @RequestMapping(name = "/signup" , method = RequestMethod.POST)
+    @RequestMapping(value = "/signup" , method = RequestMethod.POST)
     public String signupForm(Model model,
                              @RequestParam("email") String email,
                              @RequestParam("password") String password,
